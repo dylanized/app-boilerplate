@@ -26,30 +26,6 @@ App description goes here.
 
 ## Tasks
 
-    "install": "npm run build",
-    "build": "",
-    "start": "node server.js",
-    "build-start": "npm run build && npm run start"
-    "reload-start": "npm run reloadDB && npm run build-start",
-    "dev": "npm run reload-start",
-    "test": "mocha test/[^_]*.js --bail",
-    "mocha": "mocha",   
-    "cron": "",
-    "createDB": "",
-    "importDB": "mongoimport -d $db -c $collection --file ",
-    "seedDB": "mongoimport -d $db -c $collection --file $filepath",
-    "dropDB": "mongo legislators_development --eval 'db.dropDatabase()'",
-    "reloadDB": "npm run dropDB && npm run seedDB",
-    "exportDB": "",
-    "startDB": "",   
-    "createSQL": "",
-    "importSQL": "",
-    "seedSQL": "",
-    "dropSQL": "",
-    "reloadSQL": "",
-    "exportSQL": "",
-    "startSQL": ""
-
 #### Installing & Running
 
 - `npm install`
@@ -113,6 +89,13 @@ App description goes here.
   - Exports database to `<file>`
 - `npm run startSQL`
   - Starts database process  
+  
+#### Other Tasks  
+
+- `npm run cron`
+  - Maintenance task that is run regularly
+- `npm run cleanup`
+  - Occasional cleanup task
 
 #### Cron Jobs
 

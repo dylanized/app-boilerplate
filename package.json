@@ -20,7 +20,6 @@
     "dev": "npm run reload-start",
     "test": "mocha test/[^_]*.js --bail",
     "mocha": "mocha",   
-    "cron": "",
     "createDB": "",
     "importDB": "mongoimport -d $db -c $collection --file ",
     "seedDB": "mongoimport -d $db -c $collection --file $filepath",
@@ -34,6 +33,8 @@
     "dropSQL": "",
     "reloadSQL": "",
     "exportSQL": "",
-    "startSQL": ""
+    "startSQL": "",
+    "cron": "",
+    "cleanup": ""    
   } 
 }
