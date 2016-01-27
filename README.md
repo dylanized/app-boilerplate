@@ -26,51 +26,93 @@ App description goes here.
 
 ## Tasks
 
+    "install": "npm run build",
+    "build": "",
+    "start": "node server.js",
+    "build-start": "npm run build && npm run start"
+    "reload-start": "npm run reloadDB && npm run build-start",
+    "dev": "npm run reload-start",
+    "test": "mocha test/[^_]*.js --bail",
+    "mocha": "mocha",   
+    "cron": "",
+    "createDB": "",
+    "importDB": "mongoimport -d $db -c $collection --file ",
+    "seedDB": "mongoimport -d $db -c $collection --file $filepath",
+    "dropDB": "mongo legislators_development --eval 'db.dropDatabase()'",
+    "reloadDB": "npm run dropDB && npm run seedDB",
+    "exportDB": "",
+    "startDB": "",   
+    "createSQL": "",
+    "importSQL": "",
+    "seedSQL": "",
+    "dropSQL": "",
+    "reloadSQL": "",
+    "exportSQL": "",
+    "startSQL": ""
+
 #### Installing & Running
 
 - `npm install`
-  - Installs modules
+  - Installs modules and runs the build
+- `npm build`
+  - Generates CSS, JS assets  
 - `npm start`
   - Starts server and master process
-- `npm run seed`
-  - Destroys, creates, and seeds development database
-- `npm run app`
-  - Builds app
-  - Runs a watch task
+- `npm run build-start`
+  - Runs the build and starts server
+- `npm run reload-start`
+  - Reloads the database, runs the build and starts server 
 - `npm run dev`
-  - Run seed
-  - Builds app
-  - Runs a watch task
-
+  - Shorter alias for reload-start
+  
 #### Testing  
   
 - `npm test`
   - Runs active Mocha test files
-  - Fails after first test failure
+  - Stops after first failure
 - `npm run mocha`
   - Runs all Mocha test files
   - Does not stop after failures
-- `npm run mocha -- <file>`
-  - Run single test file (or subset of test files)
-- `npm run mocha -- <file> --bail`
-  - Run single test file, stop after first failure
+- `npm run mocha <file>`
+  - Run single test file (or subset of test files). Ex: `test/1*.js`
+- `npm run mocha -- --bail`
+  - Run all test files, stop after first failure  
+- `npm run mocha <file> -- --bail`
+  - Run single test file, stop after first failure  
   
-#### Database Tasks
+#### Database Tasks 
   
+- `npm run createDB`
+  - Creates the database
 - `npm run importDB <file>`
-  - Imports `<file>` to database
+  - Imports file to database
 - `npm run seedDB`
-  - Imports seed DB file to database
+  - Imports seed file to database
 - `npm run dropDB`
   - Drops database
 - `npm run reloadDB`
   - Executes `npm run dropDB && npm run seedDB`
-- `npm run createDB`
-  - Creates database
-- `npm run deleteDB`
-  - Deletes database
 - `npm run exportDB <file>`
   - Exports database to `<file>`
+- `npm run startDB`
+  - Starts database process
+  
+#### 2nd Database Tasks 
+  
+- `npm run createSQL`
+  - Creates the database
+- `npm run importSQL <file>`
+  - Imports file to database
+- `npm run seedSQL`
+  - Imports seed file to database
+- `npm run dropSQL`
+  - Drops database
+- `npm run reloadSQL`
+  - Executes `npm run dropSQL && npm run seedSQL`
+- `npm run exportSQL <file>`
+  - Exports database to `<file>`
+- `npm run startSQL`
+  - Starts database process  
 
 #### Cron Jobs
 
