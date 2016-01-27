@@ -14,10 +14,10 @@
   "scripts": {
     "install": "npm run build",
     "build": "",
+    "watch": "",    
     "start": "node server.js",
     "build-start": "npm run build && npm run start"
-    "reload-start": "npm run reloadDB && npm run build-start",
-    "dev": "npm run reload-start",
+    "dev": "npm run reload && npm run build-start",
     "test": "mocha test/[^_]*.js --bail",
     "mocha": "mocha",   
     "createDB": "",
