@@ -3,10 +3,6 @@
   "version": "0.0.1",
   "description": "Node.js app boilerplate",
   "main": "index.js",
-  "scripts": {
-    "test": "mocha test/[^_]*.js --bail",
-    "mocha": "mocha"
-  },
   "author": "dylanized",
   "license": "MIT",
   "dependencies": {
@@ -14,5 +10,9 @@
   },
   "devDependencies": {
     "unit.js": "^2.0.0"
-  }
+  },
+  "scripts": {
+    "test": "mocha test/[^_]*.js --bail",
+    "mocha": "mocha"
+  } 
 }
