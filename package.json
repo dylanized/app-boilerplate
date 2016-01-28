@@ -15,6 +15,7 @@
   "scripts": {
     "==BUILDING==": "",
     "postinstall": "npm run build",
+    "postupdate": "bower update && npm run build",
     "build": "",
     "==WATCHING==": "",
     "watch": "npm run watch-css & npm run watch-js & npm run watch-server",
@@ -26,6 +27,7 @@
     "build-start": "npm run build && npm run start",
     "watch-start": "npm run watch && npm run start",
     "dev": "npm run reload && npm run build && npm run watch-start",
+    "stop": "node server.js",
     "==TESTING==": "",
     "test": "mocha test/[^_]*.js --bail",
     "env": "env",
