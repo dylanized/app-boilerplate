@@ -9,24 +9,34 @@
     "request": "^2.69.0"
   },
   "devDependencies": {
+    "mocha": "^2.4.4",
     "unit.js": "^2.0.0"
   },
   "scripts": {
-    "install": "npm run build",
+    "==BUILDING==": "",
+    "postinstall": "npm run build",
     "build": "",
-    "watch": "",    
+    "==WATCHING==": "",
+    "watch": "npm run watch-css & npm run watch-js & npm run watch-server",
+    "watch-css": "",
+    "watch-js": "",
+    "watch-server": "",
+    "==RUNNING==": "",
     "start": "node server.js",
-    "build-start": "npm run build && npm run start"
-    "dev": "npm run reload && npm run build-start",
+    "build-start": "npm run build && npm run start",
+    "watch-start": "npm run watch && npm run start",
+    "dev": "npm run reload && npm run build && npm run watch-start",
+    "==TESTING==": "",
     "test": "mocha test/[^_]*.js --bail",
-    "mocha": "mocha",   
+    "==DATABASE1==": "",
     "createDB": "",
     "importDB": "mongoimport -d $db -c $collection --file ",
     "seedDB": "mongoimport -d $db -c $collection --file $filepath",
     "dropDB": "mongo legislators_development --eval 'db.dropDatabase()'",
     "reloadDB": "npm run dropDB && npm run seedDB",
     "exportDB": "",
-    "startDB": "",   
+    "startDB": "",
+    "==DATABASE2==": "",
     "createSQL": "",
     "importSQL": "",
     "seedSQL": "",
@@ -34,7 +44,8 @@
     "reloadSQL": "",
     "exportSQL": "",
     "startSQL": "",
+    "==OTHER==": "",
     "cron": "",
-    "cleanup": ""    
-  } 
+    "cleanup": ""
+  }
 }
