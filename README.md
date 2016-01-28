@@ -33,18 +33,22 @@ App description goes here.
 - `npm update`
   - Updates NPM and Bower modules
 - `npm run build`
-  - Generates CSS, JS assets  
+  - Compiles CSS & JS
+- `npm run compile-css`
+  - Compiles CSS
+- `npm run compile-js`
+  - Compiles JS
   
 #### Watching
 
 - `npm run watch`
   - Launch all watch scripts
 - `npm run watch-css`
-  - Watch CSS source and render on change
+  - Watch CSS source and compile on change
 - `npm run watch-js`
-  - Watch JS source and render on change
+  - Watch JS source and compile on change
 - `npm run watch-server`
-  - Watch rendered assets and restart server on change
+  - Watch compiled assets and restart server on change
 
 #### Running  
   
@@ -77,6 +81,8 @@ App description goes here.
   - Optionally add `-- --bail` to bail on first failure 
 - `npm run env`
   - Print out NPM environment variables
+- `npm run bin`
+  - Show installed binaries
   
 #### Database Tasks 
   
@@ -111,17 +117,19 @@ App description goes here.
 - `npm run stopSQL`
 - `npm run destroyDB`
 
-#### Uninstall Tasks  
+#### Cleanup Tasks  
 
+- `npm run clean`
+  - Delete temp files
 - `npm uninstall`
   - Destroy databases
-
+  
 #### Other Tasks  
 
 - `npm run cron`
   - Maintenance task that is run regularly
-- `npm run cleanup`
-  - Occasional cleanup task
+- `npm run archive`
+  - Occasional archive task
 
 ## Architecture Notes
 

@@ -19,7 +19,6 @@
     "build": "npm run compile-css && npm run compile-js",
     "compile-css": " ",
     "compile-js": " ",
-    "clean": " ",
     "==WATCHING==": " ",
     "watch": "npm run watch-css & npm run watch-js & npm run watch-server",
     "watch-css": " ",
@@ -61,6 +60,7 @@
     "destroySQL": " ",
     "==UNINSTALL==": " ",
     "uninstall": "npm run destroyDB && npm run destroySQL && npm run clean",
+    "clean": " ",    
     "==OTHER==": " ",
     "cron": " ",
     "archive": " "
