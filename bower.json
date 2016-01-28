@@ -1,0 +1,20 @@
+{
+  "name": "app-boilerplate",
+  "description": "Node.js app boilerplate",
+  "main": "index.js",
+  "authors": [
+    "dylanized"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/dylanized/app-boilerplate",
+  "moduleType": [
+    "amd"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
