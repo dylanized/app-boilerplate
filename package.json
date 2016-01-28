@@ -35,7 +35,7 @@
     "==DATABASE1==": "",
     "createDB": "",
     "importDB": "mongoimport -d $npm_package_db_name -c $npm_package_db_collection --file ",
-    "seedDB": "mongoimport -d $npm_package_db_name -c $npm_package_db_collection --file $db.seed",
+    "seedDB": "mongoimport -d $npm_package_db_name -c $npm_package_db_collection --file $npm_package_db_seed",
     "dropDB": "mongo legislators_development --eval 'db.dropDatabase()'",
     "reloadDB": "npm run dropDB && npm run seedDB",
     "exportDB": "",
