@@ -40,11 +40,11 @@ App description goes here.
 - `npm run watch`
   - Launch all watch scripts
 - `npm run watch-css`
-  - Render CSS assets
+  - Watch CSS source and render on change
 - `npm run watch-js`
-  - Render JS assets
+  - Watch JS source and render on change
 - `npm run watch-server`
-  - Watch for new assets and restart server
+  - Watch rendered assets and restart server on change
 
 #### Running  
   
@@ -56,9 +56,9 @@ App description goes here.
   - Laucnh watch scripts and start the server 
 - `npm run dev`
   - Reload db, run the build, then watch-start
-- `npm run stop`
+- `npm stop`
   - Shut down databases
-- `npm run restart`
+- `npm restart`
   - Stop then start again
   
 #### Testing  
