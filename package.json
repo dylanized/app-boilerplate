@@ -28,6 +28,7 @@
     "dev": "npm run reload && npm run build && npm run watch-start",
     "==TESTING==": "",
     "test": "mocha test/[^_]*.js --bail",
+    "env": "env",
     "==DATABASE1==": "",
     "createDB": "",
     "importDB": "mongoimport -d $db -c $collection --file ",
