@@ -38,6 +38,7 @@
     "test-file": "mocha test/<file>",    
     "test-grep": "mocha test/*.js --grep <term>",
     "env": "env",
+    "bin": "ls ./node_modules/.bin/",
     "==DATABASE1==": " ",
     "createDB": " ",
     "importDB": "mongoimport -d $npm_package_config_db_name -c $npm_package_config_db_collection --file ",
