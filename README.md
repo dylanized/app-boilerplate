@@ -29,12 +29,22 @@ App description goes here.
 #### Building
 
 - `npm install`
-  - Installs modules and runs the build
-- `npm build`
+  - Installs NPM and Bower modules, then runs the build
+- `npm update`
+  - Updates NPM and Bower modules
+- `npm run build`
   - Generates CSS, JS assets  
   
 #### Watching
 
+- `npm run watch`
+  - Launch all watch scripts
+- `npm run watch-css`
+  - Render CSS assets
+- `npm run watch-js`
+  - Render JS assets
+- `npm run watch-server`
+  - Watch for new assets and restart server
 
 #### Running  
   
@@ -42,10 +52,14 @@ App description goes here.
   - Starts server and master process
 - `npm run build-start`
   - Runs the build and starts server
-- `npm run reload-start`
-  - Reloads the database, runs the build and starts server 
+- `npm run watch-start`
+  - Laucnh watch scripts and start the server 
 - `npm run dev`
-  - Shorter alias for reload-start
+  - Reload db, run the build, then watch-start
+- `npm run stop`
+  - Shut down databases
+- `npm run restart`
+  - Stop then start again
   
 #### Testing  
   
@@ -64,7 +78,7 @@ App description goes here.
 - `npm run mocha <file> -- --bail`
   - Run single test file, stop after first failure  
 - `npm run env`
-  - Dump out npm environment variables
+  - Dump out NPM environment variables
   
 #### Database Tasks 
   
@@ -73,7 +87,7 @@ App description goes here.
 - `npm run importDB <file>`
   - Imports file to database
 - `npm run seedDB`
-  - Imports seed file to database
+  - Imports seed file to database (defined in `package.json`)
 - `npm run dropDB`
   - Drops database
 - `npm run reloadDB`
@@ -82,30 +96,48 @@ App description goes here.
   - Exports database to `<file>`
 - `npm run startDB`
   - Starts database process
+- `npm run stopDB`
+  - Stops database process
+- `npm run destroyDB`
+  - Destroy database
   
 #### 2nd Database Tasks 
   
 - `npm run createSQL`
-  - Creates the database
 - `npm run importSQL <file>`
-  - Imports file to database
 - `npm run seedSQL`
-  - Imports seed file to database
 - `npm run dropSQL`
-  - Drops database
 - `npm run reloadSQL`
-  - Executes `npm run dropSQL && npm run seedSQL`
 - `npm run exportSQL <file>`
-  - Exports database to `<file>`
 - `npm run startSQL`
-  - Starts database process  
-  
+- `npm run stopSQL`
+- `npm run destroyDB`
+
+#### Uninstall Tasks  
+
+- `npm uninstall`
+  - Destroy databases
+
 #### Other Tasks  
 
 - `npm run cron`
   - Maintenance task that is run regularly
 - `npm run cleanup`
   - Occasional cleanup task
+
+## Architecture Notes
+
+#### Section #1
+
+- note #1
+- note #2
+
+#### Section #2
+
+- note #1
+- note #2
+
+## Devops Notes
 
 #### Cron Jobs
 
@@ -121,18 +153,6 @@ App description goes here.
 
 - step #1
 - step #2
-
-## Architecture Notes
-
-#### Section #1
-
-- note #1
-- note #2
-
-#### Section #2
-
-- note #1
-- note #2
 
 ## User Roles
 
