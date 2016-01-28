@@ -26,12 +26,18 @@ App description goes here.
 
 ## Tasks
 
-#### Installing & Running
+#### Building
 
 - `npm install`
   - Installs modules and runs the build
 - `npm build`
   - Generates CSS, JS assets  
+  
+#### Watching
+
+
+#### Running  
+  
 - `npm start`
   - Starts server and master process
 - `npm run build-start`
@@ -51,10 +57,14 @@ App description goes here.
   - Does not stop after failures
 - `npm run mocha <file>`
   - Run single test file (or subset of test files). Ex: `test/1*.js`
+- `npm run mocha -- --grep <string>`
+  - Run test files containing `<string>`
 - `npm run mocha -- --bail`
   - Run all test files, stop after first failure  
 - `npm run mocha <file> -- --bail`
   - Run single test file, stop after first failure  
+- `npm run env`
+  - Dump out npm environment variables
   
 #### Database Tasks 
   
