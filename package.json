@@ -14,7 +14,7 @@
   },
   "scripts": {
     "==BUILDING==": "",
-    "postinstall": "npm run build",
+    "postinstall": "bower install && npm run build",
     "postupdate": "bower update && npm run build",
     "build": "",
     "==WATCHING==": "",
