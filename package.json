@@ -41,7 +41,7 @@
     "exportDB": "",
     "startDB": "",
     "stopDB": "",    
-    "destroyDB": ""
+    "destroyDB": "",
     "==DATABASE2==": "",
     "createSQL": "",
     "importSQL": "",
@@ -51,15 +51,15 @@
     "exportSQL": "",
     "startSQL": "",
     "stopSQL": "",
-    "destroySQL": ""
+    "destroySQL": "",
     "==UNINSTALL==": "",
-    "uninstall": "npm run destroyDB && npm run destroySQL"
+    "uninstall": "npm run destroyDB && npm run destroySQL",
     "==OTHER==": "",
     "cron": "",
     "cleanup": ""
   },
   "db": {
-  	"name": "exampleDatabase"
+  	"name": "exampleDatabase",
   	"collection": "exampleCollection",
   	"seed": "exampleSeed.json"
   },
