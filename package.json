@@ -27,9 +27,13 @@
     "build-start": "npm run build && npm run start",
     "watch-start": "npm run watch && npm run start",
     "dev": "npm run reload && npm run build && npm run watch-start",
-    "stop": "npm run stopDB && npm run stopSQL",   
+    "stop": "npm run stopDB && npm run stopSQL",
     "==TESTING==": " ",
     "test": "mocha test/[^_]*.js --bail",
+    "mocha": "mocha",
+    "test-all": "mocha || true",
+    "test-file": "mocha test/<file>",    
+    "test-grep": "mocha test/*.js --grep <term>",
     "env": "env",
     "==DATABASE1==": " ",
     "createDB": " ",
@@ -39,7 +43,7 @@
     "reloadDB": "npm run dropDB && npm run seedDB",
     "exportDB": " ",
     "startDB": " ",
-    "stopDB": " ",    
+    "stopDB": " ",
     "destroyDB": " ",
     "==DATABASE2==": " ",
     "createSQL": " ",
@@ -58,13 +62,13 @@
     "cleanup": " "
   },
   "db": {
-  	"name": "exampleDatabase",
-  	"collection": "exampleCollection",
-  	"seed": "exampleSeed.json"
+    "name": "exampleDatabase",
+    "collection": "exampleCollection",
+    "seed": "exampleSeed.json"
   },
-  "sql": {  
-  	"port": "",
-  	"name": "",
-  	"seed": ""
+  "sql": {
+    "port": "",
+    "name": "",
+    "seed": ""
   }
 }

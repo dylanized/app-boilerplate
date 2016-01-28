@@ -66,19 +66,17 @@ App description goes here.
 - `npm test`
   - Runs active Mocha test files
   - Stops after first failure
-- `npm run mocha`
+- `npm run test-all` or `npm run mocha`
   - Runs all Mocha test files
   - Does not stop after failures
-- `npm run mocha <file>`
-  - Run single test file (or subset of test files). Ex: `test/1*.js`
-- `npm run mocha -- --grep <string>`
-  - Run test files containing `<string>`
-- `npm run mocha -- --bail`
-  - Run all test files, stop after first failure  
-- `npm run mocha <file> -- --bail`
-  - Run single test file, stop after first failure  
+- `npm run test-file <file>`
+  - Run single test file or subset files in the /test folder
+  - Optionally add `-- --bail` to bail on first failure
+- `npm run test-grep <term>`
+  - Run test files containing `<term>`
+  - Optionally add `-- --bail` to bail on first failure 
 - `npm run env`
-  - Dump out NPM environment variables
+  - Print out NPM environment variables
   
 #### Database Tasks 
   
