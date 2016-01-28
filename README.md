@@ -33,11 +33,11 @@ App description goes here.
 - `npm update`
   - Updates NPM and Bower modules
 - `npm run build`
-  - Compiles CSS & JS
+  - Compile CSS & JS
 - `npm run compile-css`
-  - Compiles CSS
+  - Compile CSS
 - `npm run compile-js`
-  - Compiles JS
+  - Compile JS
   
 #### Watching
 
@@ -122,7 +122,7 @@ App description goes here.
 - `npm run clean`
   - Delete temp files
 - `npm uninstall`
-  - Destroy databases
+  - Destroy databases and delete temp files
   
 #### Other Tasks  
 
