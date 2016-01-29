@@ -33,7 +33,9 @@ App description goes here.
 - `npm update`
   - Updates NPM and Bower modules
 - `npm run build`
-  - Compile CSS & JS
+  - Compile assets, do anything else needed
+- `npm run compile`
+  - Compile all assets
 - `npm run compile-css`
   - Compile CSS
 - `npm run compile-js`
