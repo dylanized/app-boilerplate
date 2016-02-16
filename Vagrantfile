@@ -69,7 +69,7 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", privileged: true, path: "vm/app.sh"
 
   # Domain Setup
-  config.vm.provision "shell", inline: "sudo hostname dirdev.reverehq.com"
+  # config.vm.provision "shell", inline: "sudo hostname subdomain.somedomain.com"
 
   # Restart Apache
   # config.vm.provision "shell", inline: "sudo service apache2 restart", run: "always"
