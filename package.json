@@ -6,7 +6,7 @@
   "author": "dylanized",
   "license": "MIT",
   "dependencies": {
-    "request": "^2.69.0"
+    "npm-run-all": "^1.5.1"
   },
   "devDependencies": {
     "mocha": "^2.4.4",
@@ -60,7 +60,7 @@
     "destroySQL": " ",
     "==UNINSTALL==": " ",
     "uninstall": "npm-run-all destroyDB destroySQL clean",
-    "clean": " ",    
+    "clean": " ",
     "==OTHER==": " ",
     "cron": " ",
     "archive": " "
@@ -72,10 +72,10 @@
       "seed": "/files/seed.json"
     },
     "sql": {
-      "name": "dbname", 
+      "name": "dbname",
       "user": "",
       "pass": "",
       "seed": "/files/seed.sql"
-    }  
+    }
   }
 }
