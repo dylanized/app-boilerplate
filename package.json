@@ -61,7 +61,7 @@
         "destroySQL": " ",
     "==UNINSTALL==": " ",
         "uninstall": "npm-run-all destroyDB destroySQL clean",
-        "clean": " ",
+        "clean": "rm tmp/*.* -rf",
     "==OTHER==": " ",
         "cron": " ",
         "archive": " "
