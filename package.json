@@ -39,7 +39,7 @@
         "test-grep": "mocha --grep",
         "env": "env",
         "bin": "ls ./node_modules/.bin/",
-    "==DATABASE1==": " ",
+    "==MongoDB==": " ",
         "createDB": " ",
         "importDB": "mongoimport -d $npm_package_config_db_name -c $npm_package_config_db_collection --file ",
         "seedDB": "npm run importDB $npm_package_config_db_seed",
@@ -49,7 +49,7 @@
         "startDB": " ",
         "stopDB": " ",
         "destroyDB": " ",
-    "==DATABASE2==": " ",
+    "==MySQL==": " ",
         "createSQL": "echo \"create database $npm_package_config_sql_dbname\" | mysql -u $npm_package_config_sql_user -p$npm_package_config_sql_pass",
         "seedSQL": "mysql -u $npm_package_config_sql_user -p$npm_package_config_sql_pass $npm_package_config_sql_dbname < $npm_package_config_sql_seed",
         "dropSQL": "echo \"DROP DATABASE IF EXISTS $npm_package_config_sql_dbname\" | mysql -u $npm_package_config_sql_user -p$npm_package_config_sql_pass",
@@ -63,8 +63,8 @@
         "uninstall": "npm-run-all destroyDB destroySQL clean",
         "clean": "rm tmp/*.* -rf",
     "==OTHER==": " ",
-        "cron": " ",
-        "archive": " "
+        "cron": "node scripts/cron.js",
+    	"archive": "node scripts/archive.js"
   },
   "config": {
     "db": {
