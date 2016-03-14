@@ -23,8 +23,7 @@ Vagrant.configure(2) do |config|
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # config.vm.network "forwarded_port", guest: 3000, host: 3000
-  # config.vm.network "forwarded_port", guest: 3306, host: 3306
-  # config.vm.network "forwarded_port", guest: 27017, host: 27017
+  config.vm.network "forwarded_port", guest: 3306, host: 3306
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -66,12 +65,12 @@ Vagrant.configure(2) do |config|
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", privileged: true, path: "vm/system.sh"
-  # config.vm.provision "shell", privileged: true, path: "vm/app.sh"
+  config.vm.provision "shell", privileged: true, path: "vm/app.sh"
 
   # Domain Setup
-  # config.vm.provision "shell", inline: "sudo hostname subdomain.somedomain.com"
+  config.vm.provision "shell", inline: "sudo hostname dev.myapp.com"
 
   # Restart Apache
-  # config.vm.provision "shell", inline: "sudo service apache2 restart", run: "always"
+  config.vm.provision "shell", inline: "sudo service apache2 restart", run: "always"
   
 end

@@ -1,0 +1,123 @@
+echo '[App] Starting app provision'
+
+# Env Vars
+APPENV=local
+NODEENV=development
+
+# DB Vars
+DBHOST=localhost
+DBNAME=foo
+DBUSER=root
+DBPASSWD=root
+
+# Path Vars
+APPROOT=/vagrant/web
+WEBROOT=/vagrant/web/webroot
+OLDROOT=/var/www
+
+# URL Vars
+URL=dev.myapp.com
+
+# APACHE ROOT ############################################################
+
+echo '[App] Setting document root to public directory'
+rm -rf $OLDROOT
+ln -fs $WEBROOT $OLDROOT
+
+# APACHE ENV #############################################################
+
+echo "[App] Adding environment variables to Apache"
+cat > /etc/apache2/sites-enabled/000-default.conf <<EOF
+<VirtualHost *:80>
+  ServerAdmin webmaster@localhost
+  ServerName $URL
+  ServerAlias $URL
+  DocumentRoot $WEBROOT
+  <Directory />
+    Options FollowSymLinks
+  </Directory>
+  <Directory /vagrant/web/webroot/>
+    Options Indexes FollowSymLinks MultiViews
+    AllowOverride All
+    Require all granted
+  </Directory>
+
+  ErrorLog /var/log/apache2/error.log
+
+  LogLevel warn
+
+  CustomLog /var/log/apache2/access.log combined
+
+  SetEnv APP_ENV $APPENV
+  SetEnv DB_HOST $DBHOST
+  SetEnv DB_NAME $DBNAME
+  SetEnv DB_USER $DBUSER
+  SetEnv DB_PASS $DBPASSWD
+
+</VirtualHost>
+EOF
+
+echo "[App] Restarting Apache"
+service apache2 restart
+
+# BASH ENV ##############################################################
+
+echo "[App] Adding environment variables locally"
+cat >> /home/vagrant/.bashrc <<EOF
+# Set envvars
+export APP_ENV=$APPENV
+export NODE_ENV=$NODEENV
+export DB_HOST=$DBHOST
+export DB_NAME=$DBNAME
+export DB_USER=$DBUSER
+export DB_PASS=$DBPASSWD
+EOF
+
+# PRINT IP ##############################################################
+
+echo "[App] IP Address:"
+ifconfig eth0 | grep inet | awk '{ print $2 }'
+
+# APP FOLDER ############################################################
+
+echo "[App] Setting permissions on $APPROOT"
+chown -R www-data:www-data $APPROOT
+
+echo "[App] Changing to $APPROOT"
+cd $APPROOT
+
+# INSTALL MODULES #######################################################
+
+if [ -e composer.json ]; then
+	echo '[App] Installing Composer modules'
+	composer install
+	composer update
+else
+	echo "[App] No Composer modules needed"
+fi
+
+if [ -e package.json ]; then
+	echo '[App] Installing NPM modules'
+	npm install
+else
+	echo "[App] No NPM modules needed"
+fi
+
+if [ -e bower.json ]; then
+	echo '[App] Installing Bower modules'
+	bower install
+else
+	echo "[App] No Bower modules needed"
+fi
+
+# LOAD DB's ###############################################################
+
+echo '[App] Load Mongo DB'
+npm run reloadDB
+
+echo '[App] Load MySQL DB'
+npm run reloadSQL
+
+# END #####################################################################
+
+echo '[App] App provision complete'
