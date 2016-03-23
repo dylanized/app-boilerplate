@@ -3,11 +3,16 @@
 echo "[System] Starting system provisioning"
 
 # Vars
-NODEVERSION=v4.2.2
+NODEVERSION=v4.4.0
 PHPVERSION=php5-5.6
 MYSQLVERSION=mysql-server-5.6
 
+# DB Vars
 DBPASSWD=root
+
+# PHP Vars
+PHP_INI=/etc/php5/apache2/php.ini
+PHP_ERROR_LOG=/vagrant/logs/php_errors.log
 
 # SETUP ########################################################################
 
@@ -36,19 +41,15 @@ sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again p
 
 apt-get -y install $MYSQLVERSION
 
-# PHPMyAdmin ##################################################################
+# MongoDB ###############################################################
 
-echo "[System] Installing PHPMyAdmin"
+echo "[System] Installing MongoDB"
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+sudo apt-get update
+sudo apt-get install -y mongodb-org
 
-sudo debconf-set-selections <<< "phpmyadmin phpmyadmin/dbconfig-install boolean true"
-sudo debconf-set-selections <<< "phpmyadmin phpmyadmin/app-password-confirm password $DBPASSWD"
-sudo debconf-set-selections <<< "phpmyadmin phpmyadmin/mysql/admin-pass password $DBPASSWD"
-sudo debconf-set-selections <<< "phpmyadmin phpmyadmin/mysql/app-pass password $DBPASSWD"
-sudo debconf-set-selections <<< "phpmyadmin phpmyadmin/reconfigure-webserver multiselect none"
-
-apt-get -y install phpmyadmin
-
-# PHP/APACHE ##################################################################
+# PHP+APACHE SETUP #############################################################
 
 echo "[System] Installing PHP-specific packages"
 apt-get -y install php5 apache2 libapache2-mod-php5 php5-curl php5-gd php5-mcrypt php5-mysql php-apc
@@ -59,9 +60,30 @@ a2enmod rewrite
 echo "[System] Allowing Apache override to all"
 sed -i "s/AllowOverride None/AllowOverride All/g" /etc/apache2/apache2.confx
 
+# PHP ERRORS ###################################################################
+
 echo "[System] Enabling PHP errors"
 sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php5/apache2/php.ini
 sed -i "s/display_errors = .*/display_errors = On/" /etc/php5/apache2/php.ini
+
+echo "[System] Enabling PHP error log and setting path"
+echo "error_log = $PHP_ERROR_LOG" >> "$PHP_INI"
+
+if [ -f $PHP_ERROR_LOG ]
+then
+	echo "[System] Existing PHP error log found, backing it up"
+	mv $PHP_ERROR_LOG ${PHP_ERROR_LOG}.bak	
+else
+	echo "[System] No PHP error log found"
+fi
+
+echo "[System] Creating new PHP error log"
+touch $PHP_ERROR_LOG
+
+echo "[System] Setting permissions on PHP error log"
+chmod -f 777 $PHP_ERROR_LOG
+
+# APACHE CONFIG #################################################################
 
 echo "[System] Turn off disabled pcntl functions so we can use Boris"
 sed -i "s/disable_functions = .*//" /etc/php5/cli/php.ini
@@ -79,6 +101,18 @@ cat > /etc/apache2/conf-available/phpmyadmin.conf << "EOF"
 EOF
 a2enconf phpmyadmin
 
+# PHPMyAdmin ##################################################################
+
+echo "[System] Installing PHPMyAdmin"
+
+sudo debconf-set-selections <<< "phpmyadmin phpmyadmin/dbconfig-install boolean true"
+sudo debconf-set-selections <<< "phpmyadmin phpmyadmin/app-password-confirm password $DBPASSWD"
+sudo debconf-set-selections <<< "phpmyadmin phpmyadmin/mysql/admin-pass password $DBPASSWD"
+sudo debconf-set-selections <<< "phpmyadmin phpmyadmin/mysql/app-pass password $DBPASSWD"
+sudo debconf-set-selections <<< "phpmyadmin phpmyadmin/reconfigure-webserver multiselect none"
+
+apt-get -y install phpmyadmin
+
 # COMPOSER ##############################################################
 
 echo "[System] Installing Composer for PHP package management"
@@ -91,13 +125,15 @@ echo "[System] Installing NodeJS and NPM"
 apt-get -y install nodejs
 curl https://npmjs.org/install.sh | sh
 
-# MongoDB ###############################################################
+# UPGRADE NPM ###########################################################
 
-echo "[System] Installing MongoDB"
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
-echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
-sudo apt-get update
-sudo apt-get install -y mongodb-org
+echo "[System] Upgrading NPM"
+npm install npm@latest -g
+
+# NPM CHECK UPDATES #####################################################
+
+echo "[System] Installing npm-check-updates"
+npm install -g npm-check-updates
 
 # MOCHA #################################################################
 
@@ -109,7 +145,7 @@ npm install -g mocha
 echo "[System] Installing Bower"
 npm install -g bower
 
-# DOTFILES ###############################################################
+# DOTFILES ##############################################################
 
 if [ -e /home/vagrant-shared/.bash_profile ]
 then
