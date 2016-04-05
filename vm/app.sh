@@ -10,6 +10,10 @@ DBNAME=foo
 DBUSER=root
 DBPASSWD=root
 
+# Apache Vars
+APACHE_ERROR_LOG=/vagrant/logs/apache_errors.log
+APACHE_ACCESS_LOG=/vagrant/logs/apache_access.log
+
 # Path Vars
 APPROOT=/vagrant/web
 WEBROOT=/vagrant/web/webroot
@@ -23,6 +27,26 @@ URL=dev.myapp.com
 echo '[App] Setting document root to public directory'
 rm -rf $OLDROOT
 ln -fs $WEBROOT $OLDROOT
+
+# BACKUP APACHE ERROR LOG ################################################
+
+if [ -f $APACHE_ERROR_LOG ]
+then
+	echo "[System] Existing Apache error log found, backing it up"
+	mv $APACHE_ERROR_LOG ${APACHE_ERROR_LOG}.bak	
+else
+	echo "[System] No Apache error log found"
+fi
+
+# BACKUP APACHE ACCESS LOG ###############################################
+
+if [ -f $APACHE_ACCESS_LOG ]
+then
+	echo "[System] Existing Apache access log found, backing it up"
+	mv $APACHE_ACCESS_LOG ${APACHE_ACCESS_LOG}.bak	
+else
+	echo "[System] No Apache access log found"
+fi
 
 # APACHE ENV #############################################################
 
@@ -42,11 +66,11 @@ cat > /etc/apache2/sites-enabled/000-default.conf <<EOF
     Require all granted
   </Directory>
 
-  ErrorLog /var/log/apache2/error.log
+  ErrorLog $APACHE_ERROR_LOG
 
   LogLevel warn
 
-  CustomLog /var/log/apache2/access.log combined
+  CustomLog $APACHE_ACCESS_LOG combined
 
   SetEnv APP_ENV $APPENV
   SetEnv DB_HOST $DBHOST
