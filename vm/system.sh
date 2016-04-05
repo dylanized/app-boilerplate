@@ -2,7 +2,7 @@
 
 echo "[System] Starting system provisioning"
 
-# Vars
+# System Vars
 NODEVERSION=v4.4.0
 PHPVERSION=php5-5.6
 MYSQLVERSION=mysql-server-5.6
@@ -13,6 +13,11 @@ DBPASSWD=root
 # PHP Vars
 PHP_INI=/etc/php5/apache2/php.ini
 PHP_ERROR_LOG=/vagrant/logs/php_errors.log
+COMPOSER_PATH=/usr/local/bin/composer
+
+# Shell Vars
+PROFILE_SOURCE=/home/vagrant-shared/.bash_profile
+PROFILE_DEST=/home/vagrant/.bash_profile
 
 # SETUP ########################################################################
 
@@ -41,7 +46,7 @@ sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again p
 
 apt-get -y install $MYSQLVERSION
 
-# MongoDB ###############################################################
+# MongoDB ####################################################################
 
 echo "[System] Installing MongoDB"
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
@@ -63,8 +68,8 @@ sed -i "s/AllowOverride None/AllowOverride All/g" /etc/apache2/apache2.confx
 # PHP ERRORS ###################################################################
 
 echo "[System] Enabling PHP errors"
-sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php5/apache2/php.ini
-sed -i "s/display_errors = .*/display_errors = On/" /etc/php5/apache2/php.ini
+sed -i "s/error_reporting = .*/error_reporting = E_ALL/" $PHP_INI
+sed -i "s/display_errors = .*/display_errors = On/" $PHP_INI
 
 echo "[System] Enabling PHP error log and setting path"
 echo "error_log = $PHP_ERROR_LOG" >> "$PHP_INI"
@@ -117,7 +122,7 @@ apt-get -y install phpmyadmin
 
 echo "[System] Installing Composer for PHP package management"
 curl https://getcomposer.org/installer | php
-mv composer.phar /usr/local/bin/composer
+mv composer.phar $COMPOSER_PATH
 
 # NODE ##################################################################
 
@@ -147,10 +152,10 @@ npm install -g bower
 
 # DOTFILES ##############################################################
 
-if [ -e /home/vagrant-shared/.bash_profile ]
+if [ -e $PROFILE_SOURCE ]
 then
 	echo "[System] Found .bash_profile, creating symlink"
-	ln -s /home/vagrant-shared/.bash_profile /home/vagrant/.bash_profile
+	ln -s $PROFILE_SOURCE $PROFILE_DEST
 else
 	echo "[System] No .bash_profile found, skipping symlink"
 fi
