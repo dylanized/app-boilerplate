@@ -150,7 +150,55 @@ npm install -g mocha
 echo "[System] Installing Bower"
 npm install -g bower
 
+# REDIS #################################################################
+
+echo "[System] Making download folder for Redis"
+mkdir /opt/redis
+cd /opt/redis
+
+echo "[System] Downloading latest stable version of Redis"
+wget -q http://download.redis.io/redis-stable.tar.gz
+
+echo "[System] Updating with new files"
+tar -xz --keep-newer-files -f redis-stable.tar.gz
+
+echo "[System] Running Redis install script"
+cd redis-stable
+make
+make install
+
+if [ -e /etc/redis.conf ]
+then
+	echo "[System] Removing default Redis config file"
+	rm /etc/redis.conf
+fi
+
+echo "[System] Creating Redis folders and setting permissions"
+mkdir -p /etc/redis
+mkdir /var/redis
+chmod -R 777 /var/redis
+
+echo "[System] Adding user for Redis"
+useradd redis
+
+echo "[System] Copying Redis config file"
+cp -u /vagrant/redis/redis.conf /etc/redis/6379.conf
+
+echo "[System] Copying Redis executable"
+cp -u /vagrant/redis/redis.init.d /etc/init.d/redis_6379
+
+echo "[System] Adding Redis to Ubuntu startup"
+update-rc.d redis_6379 defaults
+
+echo "[System] Setting permissions on Redis executable"
+chmod a+x /etc/init.d/redis_6379
+
+echo "[System] Starting Redis"
+/etc/init.d/redis_6379 start
+
 # DOTFILES ##############################################################
+
+cd /home/vagrant
 
 if [ -e $PROFILE_SOURCE ]
 then
