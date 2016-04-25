@@ -52,6 +52,8 @@
     "==MySQL==": " ",
         "createSQL": "echo \"CREATE DATABASE IF NOT EXISTS $npm_package_config_sql_database\" | mysql -u $npm_package_config_sql_user -p$npm_package_config_sql_password",
         "seedSQL": "mysql -u $npm_package_config_sql_user -p$npm_package_config_sql_password $npm_package_config_sql_database < $npm_package_config_sql_seed",
+    	"reseedSQL": "npm-run-all emptySQL seedSQL",
+    	"emptySQL": "mysqldump -u$npm_package_config_sql_user -p$npm_package_config_sql_password --add-drop-table --no-data $npm_package_config_sql_database | grep ^DROP | mysql -u$npm_package_config_sql_user -p$npm_package_config_sql_password $npm_package_config_sql_database",        
         "dropSQL": "echo \"DROP DATABASE IF EXISTS $npm_package_config_sql_database\" | mysql -u $npm_package_config_sql_user -p$npm_package_config_sql_password",
         "loadSQL": "npm-run-all createSQL seedSQL",
         "reloadSQL": "npm-run-all dropSQL loadSQL",
