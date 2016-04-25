@@ -41,8 +41,8 @@
         "bin": "ls ./node_modules/.bin/",
     "==MongoDB==": " ",
         "createDB": " ",
-        "importDB": "mongoimport -d $npm_package_config_db_name -c $npm_package_config_db_collection --file ",
-        "seedDB": "mongoimport -d $npm_package_config_db_name -c $npm_package_config_db_collection --file $npm_package_config_db_seed",
+        "importDB": "mongoimport -d $npm_package_config_db_database -c $npm_package_config_db_collection --file ",
+        "seedDB": "mongoimport -d $npm_package_config_db_database -c $npm_package_config_db_collection --file $npm_package_config_db_seed",
         "dropDB": "mongo legislators_development --eval 'db.dropDatabase()'",
         "reloadDB": "npm-run-all dropDB seedDB",
         "exportDB": " ",
@@ -50,9 +50,9 @@
         "stopDB": " ",
         "destroyDB": " ",
     "==MySQL==": " ",
-        "createSQL": "echo \"CREATE DATABASE IF NOT EXISTS $npm_package_config_sql_dbname\" | mysql -u $npm_package_config_sql_user -p$npm_package_config_sql_pass",
-        "seedSQL": "mysql -u $npm_package_config_sql_user -p$npm_package_config_sql_pass $npm_package_config_sql_dbname < $npm_package_config_sql_seed",
-        "dropSQL": "echo \"DROP DATABASE IF EXISTS $npm_package_config_sql_dbname\" | mysql -u $npm_package_config_sql_user -p$npm_package_config_sql_pass",
+        "createSQL": "echo \"CREATE DATABASE IF NOT EXISTS $npm_package_config_sql_database\" | mysql -u $npm_package_config_sql_user -p$npm_package_config_sql_password",
+        "seedSQL": "mysql -u $npm_package_config_sql_user -p$npm_package_config_sql_password $npm_package_config_sql_database < $npm_package_config_sql_seed",
+        "dropSQL": "echo \"DROP DATABASE IF EXISTS $npm_package_config_sql_database\" | mysql -u $npm_package_config_sql_user -p$npm_package_config_sql_password",
         "loadSQL": "npm-run-all createSQL seedSQL",
         "reloadSQL": "npm-run-all dropSQL loadSQL",
         "exportSQL": " ",
@@ -68,15 +68,16 @@
   },
   "config": {
     "db": {
-      "name": "exampleDatabase",
+      "database": "exampleDatabase",
       "collection": "exampleCollection",
       "seed": "/files/seed.json"
     },
     "sql": {
-      "name": "dbname",
-      "user": "",
-      "pass": "",
-      "seed": "/files/seed.sql"
+	  "host": "localhost",
+      "user": "root",
+      "password": "root",
+      "database": "database_name",
+      "seed": "/files/database_seed_file.sql"
     }
   }
 }
