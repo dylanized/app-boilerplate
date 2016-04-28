@@ -12,6 +12,7 @@ DBPASSWD=root
 
 # PHP Vars
 PHP_INI=/etc/php5/apache2/php.ini
+LOG_FOLDER=/vagrant/logs
 PHP_ERROR_LOG=/vagrant/logs/php_errors.log
 COMPOSER_PATH=/usr/local/bin/composer
 
@@ -36,6 +37,19 @@ add-apt-repository ppa:chris-lea/node.js
 
 echo "[System] Updating packages list"
 apt-get -qq update
+
+# LOG FOLDER ###################################################################
+
+if [ -e $LOG_FOLDER ]
+then
+	echo "[System] Found log folder"
+else
+	echo "[System] Log folder not found, creating it"
+	mkdir $LOG_FOLDER
+fi
+
+echo "[System] Setting permissions on log folder"
+chmod -R 777 $LOG_FOLDER
 
 # MySQL #######################################################################
 
