@@ -125,9 +125,10 @@ cd $APPROOT
 # INSTALL MODULES #######################################################
 
 if [ -e composer.json ]; then
+	echo '[App] Updating Composer versions'
+	composer update
 	echo '[App] Installing Composer modules'
 	composer install
-	composer update
 else
 	echo "[App] No Composer modules needed"
 fi
