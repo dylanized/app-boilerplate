@@ -38,6 +38,12 @@ else
 	echo "[System] No Apache error log found"
 fi
 
+echo "[App] Creating new Apache error log"
+touch $APACHE_ERROR_LOG
+
+echo "[App] Setting permissions on Apache error log"
+chmod 777 $APACHE_ERROR_LOG
+
 # BACKUP APACHE ACCESS LOG ###############################################
 
 if [ -f $APACHE_ACCESS_LOG ]
@@ -47,6 +53,12 @@ then
 else
 	echo "[System] No Apache access log found"
 fi
+
+echo "[App] Creating new Apache access log"
+touch $APACHE_ACCESS_LOG
+
+echo "[App] Setting permissions on Apache access log"
+chmod 777 $APACHE_ACCESS_LOG
 
 # APACHE ENV #############################################################
 
