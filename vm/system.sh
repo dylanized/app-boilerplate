@@ -100,7 +100,7 @@ echo "[System] Creating new PHP error log"
 touch $PHP_ERROR_LOG
 
 echo "[System] Setting permissions on PHP error log"
-chmod -f 777 $PHP_ERROR_LOG
+chmod 777 $PHP_ERROR_LOG
 
 # APACHE CONFIG #################################################################
 
