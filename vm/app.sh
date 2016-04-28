@@ -80,7 +80,7 @@ cat > /etc/apache2/sites-enabled/000-default.conf <<EOF
 
   ErrorLog $APACHE_ERROR_LOG
 
-  LogLevel warn
+  LogLevel debug
 
   CustomLog $APACHE_ACCESS_LOG combined
 
