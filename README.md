@@ -36,9 +36,9 @@ App description goes here.
   - Compile assets, do anything else needed
 - `npm run compile`
   - Compile all assets
-- `npm run compile-css`
+- `npm run css:compile`
   - Compile CSS
-- `npm run compile-js`
+- `npm run js:compile`
   - Compile JS
   
 #### Watching
