@@ -45,23 +45,23 @@ App description goes here.
 
 - `npm run watch`
   - Launch all watch scripts
-- `npm run watch-css`
+- `npm run css:watch`
   - Watch CSS source and compile on change
-- `npm run watch-js`
+- `npm run js:watch`
   - Watch JS source and compile on change
-- `npm run watch-server`
+- `npm run server:watch`
   - Watch compiled assets and restart server on change
 
 #### Running  
   
 - `npm start`
   - Starts server and master process
-- `npm run build-start`
+- `npm run build:start`
   - Runs the build and starts server
-- `npm run watch-start`
+- `npm run watch:start`
   - Laucnh watch scripts and start the server 
 - `npm run dev`
-  - Reload db, run the build, then watch-start
+  - Reload db, run the build, then watch:start
 - `npm stop`
   - Shut down databases
 - `npm restart`
@@ -90,23 +90,23 @@ App description goes here.
   
 #### Database Tasks 
   
-- `npm run createDB`
+- `npm run db:create`
   - Creates the database
-- `npm run importDB <file>`
+- `npm run db:import <file>`
   - Imports file to database
-- `npm run seedDB`
+- `npm run db:seed`
   - Imports seed file to database (defined in `package.json`)
-- `npm run dropDB`
+- `npm run db:drop`
   - Drops database
-- `npm run reloadDB`
-  - Executes `npm run dropDB && npm run seedDB`
-- `npm run exportDB <file>`
+- `npm run db:reload`
+  - Executes `npm run db:drop && npm run seedDB`
+- `npm run db:export <file>`
   - Exports database to `<file>`
-- `npm run startDB`
+- `npm run db:start`
   - Starts database process
-- `npm run stopDB`
+- `npm run db:stop`
   - Stops database process
-- `npm run destroyDB`
+- `npm run db:destroy`
   - Destroy database
   
 #### 2nd Database Tasks 
