@@ -111,15 +111,15 @@ App description goes here.
   
 #### 2nd Database Tasks 
   
-- `npm run createSQL`
-- `npm run importSQL <file>`
-- `npm run seedSQL`
-- `npm run dropSQL`
-- `npm run reloadSQL`
-- `npm run exportSQL <file>`
-- `npm run startSQL`
-- `npm run stopSQL`
-- `npm run destroyDB`
+- `npm run sql:create`
+- `npm run sql:import <file>`
+- `npm run sql:seed`
+- `npm run sql:drop`
+- `npm run sql:reload`
+- `npm run sql:export <file>`
+- `npm run sql:start`
+- `npm run sql:stop`
+- `npm run sql:destroy`
 
 #### Cleanup Tasks  
 
