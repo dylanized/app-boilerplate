@@ -40,6 +40,8 @@ App description goes here.
   - Compile CSS
 - `npm run js:compile`
   - Compile JS
+- `npm run clean`
+  - Remove temp files
   
 #### Watching
 
