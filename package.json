@@ -22,6 +22,7 @@
         "js:compile": " ",
         "bower:install": "bower install",
         "bower:update": "bower update",
+	    "submodule:update": "rm -rf $npm_package_config_submodule_folder && git clone $npm_package_config_submodule_repo $npm_package_config_submodule_folder && rm -rf $npm_package_config_submodule_git",        
         "clean": "rm -rf tmp"
     "==WATCHING==": " ",
         "watch": "run-s -l css:watch js:watch server:watch",
@@ -69,6 +70,11 @@
     	"archive": "node scripts/archive.js"
   },
   "config": {
+    "submodule": {
+      "repo": "git@github.com:dylanized/foo.git",
+      "folder": "foo",
+      "git": "foo/.git"
+    },  
     "db": {
       "database": "exampleDatabase",
       "collection": "exampleCollection",
