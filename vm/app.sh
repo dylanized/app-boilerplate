@@ -73,7 +73,7 @@ cat > /etc/apache2/sites-enabled/000-default.conf <<EOF
   <Directory />
     Options FollowSymLinks
   </Directory>
-  <Directory /vagrant/web/webroot/>
+  <Directory /vagrant/webroot/>
     Options Indexes FollowSymLinks MultiViews
     AllowOverride All
     Require all granted
@@ -150,11 +150,8 @@ fi
 
 # LOAD DB's ###############################################################
 
-echo '[App] Load Mongo DB'
-npm run reloadDB
-
-echo '[App] Load MySQL DB'
-npm run reloadSQL
+echo '[App] Create & seed database'
+npm run $LOAD_TASK
 
 # END #####################################################################
 
