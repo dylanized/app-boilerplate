@@ -49,10 +49,10 @@ chmod 777 $APACHE_ERROR_LOG
 
 if [ -f $APACHE_ACCESS_LOG ]
 then
-	echo "[System] Existing Apache access log found, backing it up"
+	echo "[App] Existing Apache access log found, backing it up"
 	mv $APACHE_ACCESS_LOG ${APACHE_ACCESS_LOG}.bak	
 else
-	echo "[System] No Apache access log found"
+	echo "[App] No Apache access log found"
 fi
 
 echo "[App] Creating new Apache access log"
