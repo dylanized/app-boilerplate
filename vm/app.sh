@@ -21,6 +21,7 @@ OLDROOT=/var/www
 
 # URL Vars
 URL=dev.myapp.com
+LOAD_TASK=sql:load
 
 # APACHE ROOT ############################################################
 
@@ -32,10 +33,10 @@ ln -fs $WEBROOT $OLDROOT
 
 if [ -f $APACHE_ERROR_LOG ]
 then
-	echo "[System] Existing Apache error log found, backing it up"
+	echo "[App] Existing Apache error log found, backing it up"
 	mv $APACHE_ERROR_LOG ${APACHE_ERROR_LOG}.bak	
 else
-	echo "[System] No Apache error log found"
+	echo "[App] No Apache error log found"
 fi
 
 echo "[App] Creating new Apache error log"
