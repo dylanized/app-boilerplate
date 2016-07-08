@@ -151,12 +151,7 @@ curl https://npmjs.org/install.sh | sh
 # UPGRADE NPM ###########################################################
 
 echo "[System] Upgrading NPM"
-npm install npm@latest -g
-
-# NPM CHECK UPDATES #####################################################
-
-echo "[System] Installing npm-check-updates"
-npm install -g npm-check-updates
+npm install -g npm@latest
 
 # MOCHA #################################################################
 
