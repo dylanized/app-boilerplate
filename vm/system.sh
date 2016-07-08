@@ -4,7 +4,6 @@ echo "[System] Starting system provisioning"
 
 # System Vars
 NODEVERSION=v4.4.0
-PHPVERSION=php5-5.6
 MYSQLVERSION=mysql-server-5.6
 
 # DB Vars
@@ -20,6 +19,11 @@ COMPOSER_PATH=/usr/local/bin/composer
 PROFILE_SOURCE=/home/vagrant-shared/.bash_profile
 PROFILE_DEST=/home/vagrant/.bash_profile
 
+# Repos
+PHP_REPO=ppa:ondrej/php5-5.6
+# PHP_REPO=ppa:ondrej/php
+NODE_REPO=ppa:chris-lea/node.js
+
 # SETUP ########################################################################
 
 echo "[System] Cleaning old packages"
@@ -32,8 +36,8 @@ echo "[System] Installing base packages"
 apt-get -y install vim curl build-essential python-software-properties git libssl-dev
 
 echo "[System] Add some repos to update our distro"
-add-apt-repository ppa:ondrej/$PHPVERSION
-add-apt-repository ppa:chris-lea/node.js
+add-apt-repository $PHP_REPO
+add-apt-repository $NODE_REPO
 
 echo "[System] Updating packages list"
 apt-get -qq update
