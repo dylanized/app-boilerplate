@@ -17,7 +17,7 @@ COMPOSER_PATH=/usr/local/bin/composer
 
 # Shell Vars
 PROFILE_SOURCE=/home/vagrant-shared/.bash_profile
-PROFILE_DEST=/home/vagrant/.bash_profile
+PROFILE_GUEST=/home/vagrant/.bash_profile
 
 # Repos
 PHP_REPO=ppa:ondrej/php5-5.6
@@ -219,16 +219,16 @@ npm install -g node-sass
 echo "[System] Installing npm-run-all"
 npm install -g npm-run-all
 
-# DOTFILES ##############################################################
+# DOTFILES ###############################################################
 
 cd /home/vagrant
 
 if [ -e $PROFILE_SOURCE ]
 then
 	echo "[System] Found .bash_profile, creating symlink"
-	ln -s $PROFILE_SOURCE $PROFILE_DEST
+	ln -s $PROFILE_SOURCE $PROFILE_GUEST
 else
-	echo "[System] No .bash_profile found, skipping symlink"
+	echo "[System] Skipping .bash_profile symlink"
 fi
 
 echo "[System] System provision complete"
