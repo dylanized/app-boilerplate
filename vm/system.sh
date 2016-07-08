@@ -209,6 +209,16 @@ chmod a+x /etc/init.d/redis_6379
 echo "[System] Starting Redis"
 /etc/init.d/redis_6379 start
 
+# NODE-SASS ##############################################################
+
+echo "[System] Installing node-sass"
+npm install -g node-sass
+
+# NPM-RUN-ALL ####################################################
+
+echo "[System] Installing npm-run-all"
+npm install -g npm-run-all
+
 # DOTFILES ##############################################################
 
 cd /home/vagrant
