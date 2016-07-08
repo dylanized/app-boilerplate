@@ -15,8 +15,8 @@ APACHE_ERROR_LOG=/vagrant/logs/apache_errors.log
 APACHE_ACCESS_LOG=/vagrant/logs/apache_access.log
 
 # Path Vars
-APPROOT=/vagrant/web
-WEBROOT=/vagrant/web/webroot
+APPROOT=/vagrant
+WEBROOT=/vagrant/webroot
 OLDROOT=/var/www
 
 # URL Vars
