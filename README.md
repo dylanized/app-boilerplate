@@ -134,6 +134,8 @@ App description goes here.
   
 #### Other Tasks  
 
+- `npm run log:init -- logs/file.log 'NPM log file'`
+  - Backup and initialize a new log file
 - `npm run cron`
   - Maintenance task that is run regularly
 - `npm run archive`
