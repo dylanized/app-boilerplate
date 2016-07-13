@@ -104,19 +104,8 @@ sed -i "s/display_errors = .*/display_errors = On/" $PHP_INI
 echo "[System] Enabling PHP error log and setting path"
 echo "error_log = $PHP_ERROR_LOG" >> "$PHP_INI"
 
-if [ -f $PHP_ERROR_LOG ]
-then
-	echo "[System] Existing PHP error log found, backing it up"
-	mv $PHP_ERROR_LOG ${PHP_ERROR_LOG}.bak	
-else
-	echo "[System] No PHP error log found"
-fi
-
-echo "[System] Creating new PHP error log"
-touch $PHP_ERROR_LOG
-
-echo "[System] Setting permissions on PHP error log"
-chmod 777 $PHP_ERROR_LOG
+echo "[System] Initializing PHP error log"
+sh /vagrant/scripts/log.sh $PHP_ERROR_LOG 'PHP error log'
 
 # APACHE CONFIG #################################################################
 

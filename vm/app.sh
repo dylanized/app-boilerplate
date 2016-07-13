@@ -31,35 +31,13 @@ ln -fs $WEBROOT $OLDROOT
 
 # BACKUP APACHE ERROR LOG ################################################
 
-if [ -f $APACHE_ERROR_LOG ]
-then
-	echo "[App] Existing Apache error log found, backing it up"
-	mv $APACHE_ERROR_LOG ${APACHE_ERROR_LOG}.bak	
-else
-	echo "[App] No Apache error log found"
-fi
-
-echo "[App] Creating new Apache error log"
-touch $APACHE_ERROR_LOG
-
-echo "[App] Setting permissions on Apache error log"
-chmod 777 $APACHE_ERROR_LOG
+echo "[App] Initializing Apache error log"
+sh /vagrant/scripts/log.sh $APACHE_ERROR_LOG 'Apache error log'
 
 # BACKUP APACHE ACCESS LOG ###############################################
 
-if [ -f $APACHE_ACCESS_LOG ]
-then
-	echo "[App] Existing Apache access log found, backing it up"
-	mv $APACHE_ACCESS_LOG ${APACHE_ACCESS_LOG}.bak	
-else
-	echo "[App] No Apache access log found"
-fi
-
-echo "[App] Creating new Apache access log"
-touch $APACHE_ACCESS_LOG
-
-echo "[App] Setting permissions on Apache access log"
-chmod 777 $APACHE_ACCESS_LOG
+echo "[App] Initializing Apache access log"
+sh /vagrant/scripts/log.sh $APACHE_ACCESS_LOG 'Apache access log'
 
 # APACHE ENV #############################################################
 

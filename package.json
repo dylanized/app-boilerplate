@@ -66,6 +66,7 @@
     "==UNINSTALL==": " ",
     "uninstall": "run-s -l db:destroy sql:destroy clean",
     "==OTHER==": " ",
+    "log:init": "sh scripts/log.sh",
     "cron": "sh scripts/cron.sh",
     "archive": "node scripts/archive.js"
   },
