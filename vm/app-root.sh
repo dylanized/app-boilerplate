@@ -1,4 +1,4 @@
-echo '[App] Starting app provision'
+echo '[App.root] Starting app provision (root user)'
 
 # Env Vars
 APPENV=local
@@ -21,28 +21,26 @@ OLDROOT=/var/www
 
 # URL Vars
 URL=dev.myapp.com
-INSTALL_TASK=modules:install
-LOAD_TASK=sql:load
 
 # APACHE ROOT ############################################################
 
-echo '[App] Setting document root to public directory'
+echo '[App.root] Setting document root to public directory'
 rm -rf $OLDROOT
 ln -fs $WEBROOT $OLDROOT
 
 # BACKUP APACHE ERROR LOG ################################################
 
-echo "[App] Initializing Apache error log"
+echo "[App.root] Initializing Apache error log"
 sh /vagrant/scripts/log.sh $APACHE_ERROR_LOG 'Apache error log'
 
 # BACKUP APACHE ACCESS LOG ###############################################
 
-echo "[App] Initializing Apache access log"
+echo "[App.root] Initializing Apache access log"
 sh /vagrant/scripts/log.sh $APACHE_ACCESS_LOG 'Apache access log'
 
 # APACHE ENV #############################################################
 
-echo "[App] Adding environment variables to Apache"
+echo "[App.root] Adding environment variables to Apache"
 cat > /etc/apache2/sites-enabled/000-default.conf <<EOF
 <VirtualHost *:80>
   ServerAdmin webmaster@localhost
@@ -73,12 +71,12 @@ cat > /etc/apache2/sites-enabled/000-default.conf <<EOF
 </VirtualHost>
 EOF
 
-echo "[App] Restarting Apache"
+echo "[App.root] Restarting Apache"
 service apache2 restart
 
 # BASH ENV ##############################################################
 
-echo "[App] Adding environment variables locally"
+echo "[App.root] Adding environment variables locally"
 cat >> /home/vagrant/.bashrc <<EOF
 # Set envvars
 export APP_ENV=$APPENV
@@ -91,27 +89,10 @@ EOF
 
 # PRINT IP ##############################################################
 
-echo "[App] IP Address:"
+echo "[App.root] IP Address:"
 ifconfig eth0 | grep inet | awk '{ print $2 }'
 
 # APP FOLDER ############################################################
 
-echo "[App] Setting permissions on $APPROOT"
+echo "[App.root] Setting permissions on $APPROOT"
 chown -R www-data:www-data $APPROOT
-
-echo "[App] Changing to $APPROOT"
-cd $APPROOT
-
-# INSTALL MODULES #######################################################
-
-echo '[App] Install modules'
-npm run $INSTALL_TASK
-
-# LOAD DB's ###############################################################
-
-echo '[App] Create & seed database'
-npm run $LOAD_TASK
-
-# END #####################################################################
-
-echo '[App] App provision complete'
