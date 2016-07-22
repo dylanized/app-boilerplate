@@ -21,6 +21,7 @@ OLDROOT=/var/www
 
 # URL Vars
 URL=dev.myapp.com
+INSTALL_TASK=modules:install
 LOAD_TASK=sql:load
 
 # APACHE ROOT ############################################################
@@ -103,28 +104,8 @@ cd $APPROOT
 
 # INSTALL MODULES #######################################################
 
-if [ -e composer.json ]; then
-	echo '[App] Updating Composer versions'
-	composer update
-	echo '[App] Installing Composer modules'
-	composer install
-else
-	echo "[App] No Composer modules needed"
-fi
-
-if [ -e package.json ]; then
-	echo '[App] Installing NPM modules'
-	npm install
-else
-	echo "[App] No NPM modules needed"
-fi
-
-if [ -e bower.json ]; then
-	echo '[App] Installing Bower modules'
-	bower install
-else
-	echo "[App] No Bower modules needed"
-fi
+echo '[App] Install modules'
+npm run $INSTALL_TASK
 
 # LOAD DB's ###############################################################
 
