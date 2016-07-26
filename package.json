@@ -72,8 +72,12 @@
     "sql:destroy": " ",
     "==UNINSTALL==": " ",
     "uninstall": "run-s -l db:destroy sql:destroy clean",
-    "==OTHER==": " ",
+    "==LOGS==": " ",
     "log:init": "sh scripts/log.sh",
+    "log:init:apache_access": "sh scripts/log.sh logs/apache_access.log 'Apache access log'",
+    "log:init:apache_errors": "sh scripts/log.sh logs/apache_errors.log 'Apache error log'",
+    "log:init:php_errors": "sh scripts/log.sh logs/php_errors.log 'PHP error log'",
+    "==OTHER==": " ",        
     "cron": "sh scripts/cron.sh",
     "archive": "node scripts/archive.js"
   },
