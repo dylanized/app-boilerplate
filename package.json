@@ -77,6 +77,12 @@
     "log:init:apache_access": "sh scripts/log.sh logs/apache_access.log 'Apache access log'",
     "log:init:apache_errors": "sh scripts/log.sh logs/apache_errors.log 'Apache error log'",
     "log:init:php_errors": "sh scripts/log.sh logs/php_errors.log 'PHP error log'",
+	"log:init:mysql": "sh scripts/log.sh logs/mysql.log 'MySQL general log'",
+    "log:init:all": "run-s -l log:init:apache_access log:init:apache_errors log:init:php_errors log:init:mysql",
+    "==LOGGING==": "",
+    "log:mysql:start": "run-s -l log:init:mysql log:mysql:enable",
+    "log:mysql:enable": "echo \"SET GLOBAL general_log = 'ON'; SET GLOBAL general_log_file = '/vagrant/logs/mysql.log';\" | mysql --defaults-extra-file=/vagrant/my.cnf -D $npm_package_config_sql_database",
+    "log:mysql:stop": "echo \"SET GLOBAL general_log = 'OFF';\" | mysql --defaults-extra-file=/vagrant/my.cnf -D $npm_package_config_sql_database",    
     "==OTHER==": " ",        
     "cron": "sh scripts/cron.sh",
     "archive": "node scripts/archive.js"
