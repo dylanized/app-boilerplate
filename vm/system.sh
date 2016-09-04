@@ -208,6 +208,11 @@ npm install -g node-sass
 echo "[System] Installing npm-run-all"
 npm install -g npm-run-all
 
+# NODE-DEV ##############################################################
+
+echo "[System] Installing Nodemon"
+npm install -g nodemon
+
 # DOTFILES ###############################################################
 
 cd /home/vagrant
