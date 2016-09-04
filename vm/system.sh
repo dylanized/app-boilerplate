@@ -203,7 +203,7 @@ echo "[System] Starting Redis"
 echo "[System] Installing node-sass"
 npm install -g node-sass
 
-# NPM-RUN-ALL ####################################################
+# NPM-RUN-ALL ###########################################################
 
 echo "[System] Installing npm-run-all"
 npm install -g npm-run-all
