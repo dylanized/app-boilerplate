@@ -134,8 +134,8 @@ mv composer.phar $COMPOSER_PATH
 # NODE ##################################################################
 
 echo "[System] Installing NodeJS and NPM"
-apt-get -y install nodejs
-curl https://npmjs.org/install.sh | sh
+curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+sudo apt-get install -y nodejs
 
 # UPGRADE NPM ###########################################################
 
