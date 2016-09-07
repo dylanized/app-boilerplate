@@ -130,11 +130,10 @@ echo "[System] Installing Composer for PHP package management"
 curl https://getcomposer.org/installer | php
 mv composer.phar $COMPOSER_PATH
 
-# NODE ##################################################################
+# NODE & NPM ############################################################
 
-echo "[System] Installing NodeJS and NPM"
-curl -sL $NODEREPO | sudo -E bash -
-sudo apt-get install -y nodejs
+curl -L $NODE_REPO | bash
+apt-get install -y nodejs
 
 # UPGRADE NPM ###########################################################
 
