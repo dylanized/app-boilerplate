@@ -3,7 +3,6 @@
 echo "[System] Starting system provisioning"
 
 # System Vars
-NODEVERSION=v4.4.0
 MYSQLVERSION=mysql-server-5.6
 
 # DB Vars
@@ -22,7 +21,7 @@ PROFILE_GUEST=/home/vagrant/.bash_profile
 # Repos
 PHP_REPO=ppa:ondrej/php5-5.6
 # PHP_REPO=ppa:ondrej/php
-NODE_REPO=ppa:chris-lea/node.js
+NODE_REPO=https://deb.nodesource.com/setup_4.x
 
 # SETUP ########################################################################
 
@@ -134,7 +133,7 @@ mv composer.phar $COMPOSER_PATH
 # NODE ##################################################################
 
 echo "[System] Installing NodeJS and NPM"
-curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+curl -sL $NODEREPO | sudo -E bash -
 sudo apt-get install -y nodejs
 
 # UPGRADE NPM ###########################################################
